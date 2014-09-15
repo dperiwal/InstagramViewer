@@ -6,10 +6,12 @@
     <string name="action_settings">Settings</string>
     <string name="popular_photos_caption">Popular Photos</string>
     <string name="caption_default_text">This is a default caption</string>
-    <string name="username_text">"Name"</string>
+    <string name="username_text">Name</string>
     <string name="by_text">"By "</string>
     <string name="counts_text">nnn</string>
     <string name="likes_text">likes</string>
+    <string name="location_info_text">location info</string>    
+    <string name="creation_time_text">creation time</string>
     
 
 </resources>

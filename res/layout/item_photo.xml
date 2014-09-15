@@ -37,6 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/username_text"
+                android:textColor="#0066CC"
                 android:textStyle="bold"  />
 
             <TextView
@@ -44,20 +45,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvUserName"
-                android:text="location info" 
-                android:textStyle="bold"/>
+                android:text="@string/location_info_text" 
+                android:textColor="#0066CC"/>
             
               <TextView
                   android:id="@+id/tvCreatedTime"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:layout_alignParentRight="true"
-                  android:text="created time"
-                  android:textSize="10sp"
+                  android:drawableLeft="@drawable/iconmonstr_time_3_icon_24"
+                  android:drawablePadding="5dp"
+                  android:text="@string/creation_time_text"
                   android:textColor="#888888"
-                  android:textStyle="bold" 
-                  android:drawableLeft="@drawable/iconmonstr_time_3_icon_24" 
-                  android:drawablePadding="5dp" />
+                  android:textSize="10sp"
+                  android:textStyle="bold" />
 
         </RelativeLayout>
 
@@ -88,6 +89,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:text="@string/counts_text"
+            android:textColor="#0066CC"
             android:textStyle="bold" 
             android:drawableLeft="@drawable/iconmonstr_favorite_4_icon_24" 
             android:drawablePadding="8dp" />
@@ -98,6 +100,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:text="@string/likes_text"
+            android:textColor="#0066CC"
             android:textStyle="bold" />
     </LinearLayout>
 

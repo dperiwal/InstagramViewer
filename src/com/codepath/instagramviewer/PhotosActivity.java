@@ -100,16 +100,14 @@ public class PhotosActivity extends Activity {
 					adpaterPhotos.notifyDataSetChanged();
 				} catch (JSONException ex) {
 					ex.printStackTrace();
-				}
-				
-				
-
+				}		
 			}
 			
 			@Override
 			public void onFailure(int statusCode, Header[] headers,
 					String responseString, Throwable throwable) {
 				super.onFailure(statusCode, headers, responseString, throwable);
+				Log.e("Instagram Service", responseString);
 			}
 			
 		});
