@@ -76,10 +76,18 @@ public class PhotosActivity extends Activity {
 						}
 						InstagramPhoto photo = new InstagramPhoto();
 						photo.userName = photoJSON.getJSONObject("user").getString("username");
+						
+						if (!photoJSON.isNull("location")) {
+							JSONObject locationJSON =  photoJSON.getJSONObject("location");
+							if (!locationJSON.isNull("name")) {	
+							   photo.location = locationJSON.getString("name");
+							}
+						}
 						if (!photoJSON.isNull("caption")) {
 							photo.caption = photoJSON.getJSONObject("caption").getString("text");
 						}
 						
+						photo.profileUrl = photoJSON.getJSONObject("user").getString("profile_picture");
 						photo.imageUrl = photoJSON.getJSONObject("images").getJSONObject("standard_resolution").getString("url");
 						photo.imageHeight = photoJSON.getJSONObject("images").getJSONObject("standard_resolution").getInt("height");
 						photo.likesCount = photoJSON.getJSONObject("likes").getInt("count");
