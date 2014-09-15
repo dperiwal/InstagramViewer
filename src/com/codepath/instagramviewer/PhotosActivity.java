@@ -83,6 +83,9 @@ public class PhotosActivity extends Activity {
 							   photo.location = locationJSON.getString("name");
 							}
 						}
+						
+						photo.createdTime = photoJSON.getLong("created_time");
+						
 						if (!photoJSON.isNull("caption")) {
 							photo.caption = photoJSON.getJSONObject("caption").getString("text");
 						}

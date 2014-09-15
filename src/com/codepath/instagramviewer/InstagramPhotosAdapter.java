@@ -1,12 +1,14 @@
 package com.codepath.instagramviewer;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.squareup.picasso.Picasso;
 
 import comcodepath.instagramviewer.R;
 
 import android.content.Context;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +30,7 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
 		TextView tvCaption;
 		TextView tvUserName;
 		TextView tvLocation;
+		TextView tvCreatedTime;
 		TextView tvLikesCount;
 	}
 
@@ -47,6 +50,7 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
 			viewHolder.tvCaption = (TextView) convertView.findViewById(R.id.tvCaption);
 			viewHolder.tvUserName = (TextView) convertView.findViewById(R.id.tvUserName);
 			viewHolder.tvLocation = (TextView) convertView.findViewById(R.id.tvLocation);
+			viewHolder.tvCreatedTime = (TextView) convertView.findViewById(R.id.tvCreatedTime);
 			viewHolder.tvLikesCount = (TextView) convertView.findViewById(R.id.tvLikesCount);
 			convertView.setTag(viewHolder);
 		} else {
@@ -73,6 +77,10 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
 		
 		// Set the location
 		viewHolder.tvLocation.setText(photo.location);
+		
+		// Set the relative created time	
+		viewHolder.tvCreatedTime.setText(DateUtils.getRelativeTimeSpanString(
+				photo.createdTime * 1000, new Date().getTime(), DateUtils.MINUTE_IN_MILLIS));
 		
 		// Set the likes count
 		viewHolder.tvLikesCount.setText(Integer.valueOf(photo.likesCount).toString());

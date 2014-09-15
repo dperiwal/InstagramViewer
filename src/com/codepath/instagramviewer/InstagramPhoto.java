@@ -8,6 +8,7 @@ public class InstagramPhoto {
 	public int imageHeight;
 	public int likesCount;
 	public String location;
+	public long createdTime;
 	
 	public InstagramPhoto() {
 		super();
