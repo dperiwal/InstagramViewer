@@ -22,7 +22,7 @@ The following third party libraries are used in this project under their respect
      android-async-http-1.4.6.jar
      picasso-2.3.4.jar
 
-The gif file <a href="file:\\DamodarInstgramViewer1.gif">DamodarInstgramViewer1.gif</a> shows the working of the app in an emulator.
+![DamodarInstgramViewer1.gif](DamodarInstgramViewer1.gif "Animation that shows the working of the app in an emulator")
 
 GIF created with LiceCap.
 
