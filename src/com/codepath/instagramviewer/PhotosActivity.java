@@ -9,6 +9,8 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,27 +20,48 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import comcodepath.instagramviewer.R;
 
+/**
+ * An app to view popular photos and their attributes from Instagram.
+ * <p>
+ * @author Damodar Periwal
+ *
+ */
 public class PhotosActivity extends Activity {
 	
 	public static final String CLIENT_ID = "bab1bc1ae7ed46bfb75660aa987a54c7";
 	ArrayList<InstagramPhoto> photos;
 	InstagramPhotosAdapter adpaterPhotos;
-	ListView lvPhotos;
+	ListView lvPhotos;	
+	private SwipeRefreshLayout swipeContainer;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_photos);
-		
+			
 		// Initialize the photos array
 		photos = new ArrayList<InstagramPhoto>(); 
 		// Create adapter and bind it to the data in the array list
 		adpaterPhotos = new InstagramPhotosAdapter(this, photos);
 		// populate the data in the list view
 		lvPhotos = (ListView) findViewById(R.id.lvPhotos);
+		// Doing the following to avoid the error View too large to fit into drawing cache,
+		// needs 1618560 bytes, only 1536000 available
+		// lvPhotos.setScrollingCacheEnabled(false);  
 		lvPhotos.setAdapter(adpaterPhotos);
 		
-		fetchPopularPhotos();
+		swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+		swipeContainer.setOnRefreshListener(new OnRefreshListener() {
+			@Override
+			public void onRefresh() {
+				// Your code to refresh the list here.
+				// Make sure you call swipeContainer.setRefreshing(false)
+				// once the network request has completed successfully.
+				fetchPopularPhotos();
+			}
+		});
+		
+		fetchPopularPhotos(); // for the first time
 	}
 
 	private void fetchPopularPhotos() {
@@ -95,12 +118,16 @@ public class PhotosActivity extends Activity {
 						photo.imageHeight = photoJSON.getJSONObject("images").getJSONObject("standard_resolution").getInt("height");
 						photo.likesCount = photoJSON.getJSONObject("likes").getInt("count");
 						photos.add(photo);
-					}
+					}				
 					// Notify the adapter to populate the list view
 					adpaterPhotos.notifyDataSetChanged();
+					
 				} catch (JSONException ex) {
 					ex.printStackTrace();
-				}		
+				} finally {
+					Log.i("INFO", "Photo count=" + photos.size());
+					swipeContainer.setRefreshing(false);
+				}
 			}
 			
 			@Override
@@ -110,9 +137,14 @@ public class PhotosActivity extends Activity {
 				Log.e("Instagram Service", responseString);
 			}
 			
-		});
-		
-		
+			@Override
+			public void onFailure(int statusCode, Header[] headers,
+					Throwable throwable, JSONObject errorResponse) {
+				// TODO Auto-generated method stub
+				super.onFailure(statusCode, headers, throwable, errorResponse);
+				Log.e("Instagram Service", errorResponse.toString());
+			}				
+		});				
 	}
 
 	@Override
