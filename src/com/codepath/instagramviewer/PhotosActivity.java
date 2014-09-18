@@ -87,6 +87,9 @@ public class PhotosActivity extends Activity {
 				// "data" => [x] => "user" => "username"
 				// "data" => [x] => "caption" => "text"
 				// "data" => [x] => "likes" => "count"
+				// "data" => [x] => "comments" => "count"
+				// "data" => [x] => "comments" => "data" => [x] => "from" => "username"
+				// "data" => [x] => "comments" => "data" => [x] => text
 				JSONArray photosJSON = null;
 				try {
 					photosJSON = response.getJSONArray("data");
@@ -117,6 +120,19 @@ public class PhotosActivity extends Activity {
 						photo.imageUrl = photoJSON.getJSONObject("images").getJSONObject("standard_resolution").getString("url");
 						photo.imageHeight = photoJSON.getJSONObject("images").getJSONObject("standard_resolution").getInt("height");
 						photo.likesCount = photoJSON.getJSONObject("likes").getInt("count");
+						
+						JSONObject commentsJSON = photoJSON.getJSONObject("comments");
+						photo.commentsCount = commentsJSON.getInt("count");
+						if (photo.commentsCount > 0) {
+							JSONArray commentsDataJSON = commentsJSON.getJSONArray("data");
+							photo.commenter1 = commentsDataJSON.getJSONObject(0).getJSONObject("from").getString("username");
+							photo.comment1 = commentsDataJSON.getJSONObject(0).getString("text");
+							if (photo.commentsCount > 1) {
+								photo.commenter2 = commentsDataJSON.getJSONObject(1).getJSONObject("from").getString("username");
+								photo.comment2 = commentsDataJSON.getJSONObject(1).getString("text");
+							}
+						}		
+						
 						photos.add(photo);
 					}				
 					// Notify the adapter to populate the list view
