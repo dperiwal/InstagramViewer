@@ -12,6 +12,6 @@
     <string name="likes_text">likes</string>
     <string name="location_info_text">location info</string>    
     <string name="creation_time_text">creation time</string>
-    
-
+    <string name="comments_text">comments</string>
+    <string name="comment_default_text">This is a comment</string>
 </resources>
