@@ -12,6 +12,9 @@ The following user stories have been completed:
 The following advanced optional user stories have been completed:
 
 - Advanced: Add pull-to-refresh for popular stream with SwipeRefreshLayout
+- Show the profile picture in a circular area (works on a device but not on the emulator)
+- Show comments count and maximum of two comments
+
   
 <b>Issue:</b> 
 pull-to-refresh works properly in an AVD with API level 16 but hasmemory problems in an AVD with API level 19.
@@ -21,12 +24,15 @@ The following third party libraries are used in this project under their respect
 
      android-async-http-1.4.6.jar
      picasso-2.3.4.jar
-
+     com.mikhaellopez.circularimageview.CircularImageView
+     
 Used Iconmonstr to create icons for watch and a heart sign.
 
 Walkthrough of all user stories:
 
-![Animated Walkthrough](DamodarInstagramViewer1.gif "Animation that shows the working of the app in an emulator")
+![Animated Walkthrough](DamodarInstagramViewer2.gif "Animation that shows the working of the app in an emulator")
+
+![Animated Walkthrough](DamodarInstagramViewer1.gif "Animation of an earlier version that shows the working of the app in an emulator")
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
