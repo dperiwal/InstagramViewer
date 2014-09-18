@@ -32,7 +32,7 @@ Walkthrough of all user stories:
 
 ![Animated Walkthrough](DamodarInstagramViewer2.gif "Animation that shows the working of the app in an emulator")
 
-![Animated Walkthrough](DamodarInstagramViewer1.gif "Animation of an earlier version that shows the working of the app in an emulator")
+The file DamodarInstagramViewer1.gif shows the working of an earlier version of the app in an emulator.
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
